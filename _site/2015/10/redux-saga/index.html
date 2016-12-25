@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html>
+    <!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/images/logo.png">
+    <link rel="icon" type="image/png" href="/assets/images/logo.png">
+
+    <title>Linux下安装Maven</title>
+
+    <meta name="keywords" content="WngLMng, wangliming, 王立明">
+    <meta name="author" content="WngLMng">
+    <meta name="description" content="redux-saga">
+
+    <meta property="og:site_name" content="WngLMng's Blog — 一个写代码的">
+    <meta property="og:url" content="/">
+    <meta property="og:title" content="Linux下安装Maven">
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="redux-saga">
+
+    <!--   Core CSS Files   -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/global.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/homepage.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/flex-layout-attribute.css">
+
+    <!-- Canonical SEO -->
+    <link rel="canonical" href="http://www.wnglmng.com/2015/10/redux-saga/">
+    <link rel="alternate" type="application/rss+xml" title="WngLMng's Blog" href="http://www.wnglmng.com/feed.xml">
+</head>
+
+<body>
+    <div id="nav" layout="row top-left">
+    <div self="left">
+        <a href="/"><div class="logo logo-isNotVisIfMobile">WngLMng's Blog</div></a>
+        <a href="/"><div class="logo logo-isVisIfMobile"></div></a>
+    </div>
+    <div class="nav-isNotVisIfMobile">
+        <div class="item">
+            <a href="/tags">Tags</a>
+        </div>
+    </div>
+    <div class="nav-isVisIfMobile">
+        <div class="item">
+            <a href="/tags">Tags</a>
+        </div>
+    </div>
+</div>
+
+    <div id="conent">
+        <div class="container container--header">
+    <h1 class="h1--home-title">Linux下安装Maven</h1>
+    <p>linux install maven</p>
+</div>
+
+        <link rel="stylesheet" type="text/css" href="/assets/css/article.css">
+<style type="text/css">
+h1, h2, h3 {
+    font-family: "Avenir-Medium";
+    color: #333333;
+}
+h1 {
+  font-size: 1.6em;
+  line-height: 1.3em;
+  margin-bottom: 0.78571em;
+}
+h2 {
+  font-size: 1.3em;
+  line-height: 1em;
+  margin-bottom: 0.62857em;
+}
+h3 {
+  font-size: 1.15em;
+  line-height: 1em;
+  margin-bottom: 0.47143em;
+}
+p {
+    font-size: 16px;
+    font-family: "Avenir-Book";
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+code {
+    font-family: "Menlo-Regular";
+    display: block;
+    background: white;
+    border: solid 1px #dedede;
+    padding: 0.7em 1em;
+    font-size: 0.8em;
+    overflow-x: auto;
+}
+</style>
+
+<div class="page-wrapper">
+    <div class="container--text">
+        <h1>redux-saga</h1>
+
+<p><a href="https://www.npmjs.com/package/redux-saga"><img src="https://img.shields.io/npm/v/redux-saga.svg?style=flat-square" alt="npm version"></a>
+<a href="https://cdnjs.com/libraries/redux-saga"><img src="https://img.shields.io/cdnjs/v/redux-saga.svg?style=flat-square" alt="CDNJS"></a></p>
+
+<p>这是Redux应用的又一个副作用模型。可以用来替换redux-thunk中间件。通过创建 <em>Sagas</em> 去搜集所有的副作用逻辑到一个集中过的地方。</p>
+
+<p>这里意味着程序逻辑会存在两个位置。</p>
+
+<ul>
+<li><p>Reducers 负责处理action的state转换</p></li>
+<li><p>Sagas 负责策划统筹合成和异步操作。</p></li>
+</ul>
+
+<p>Sagas 使用Generator functions（生成器函数）创建。</p>
+
+<blockquote>
+<p>这个中间件不只是处理异步流。如果需要简化异步控制流，可以容易的使用一些promise中间件的async/await函数。</p>
+</blockquote>
+
+<p>这个中间件的目的?</p>
+
+<ul>
+<li><p>一个目的是抽象出 <strong>Effect</strong> （影响）: 等待一个action，触发State更新 (使用分配action给store), 调用远程服务，这些都是不同形式的Effect。Saga使用常见的控制流程(if, while, for, try/catch)去组和这些Effect。</p></li>
+<li><p>Saga本身就是Effect。它可以通过选择器和其他Effect组合。它也可以被内部的其他Saga调用，提供丰富功能的子程序和
+<a href="https://en.wikipedia.org/wiki/Structured_programming">结构化程序设计</a></p></li>
+<li><p>Effect可以迭代声明。你可以迭代声明一个被中间件执行的Effect。这使得你在生成器中的运算逻辑完全可测试的。</p></li>
+<li><p>你可以实现复杂的业务逻辑，跨越多个操作(比如用户培训、向导对话框、复杂的游戏规则...)，这不是简单的使用其他Effect中间件表达。</p></li>
+<li><p><a href="#getting-started">开始</a></p></li>
+<li><p><a href="#waiting-for-future-actions">等待未知的Action</a></p></li>
+<li><p><a href="#dispatching-actions-to-the-store">调度Store的Action</a></p></li>
+<li><p><a href="#a-common-abstraction-effect">一个公共的抽象: Effect</a></p></li>
+<li><p><a href="#declarative-effects">声明Effect</a></p></li>
+<li><p><a href="#error-handling">错误处理</a></p></li>
+<li><p><a href="#effect-combinators">Effect选择器</a></p></li>
+<li><p><a href="#sequencing-sagas-via-yield">通过yield* 排序Saga</a></p></li>
+<li><p><a href="#composing-sagas">Composing Sagas</a></p></li>
+<li><p><a href="#non-blocking-calls-with-forkjoin">Non blocking calls with fork/join</a></p></li>
+<li><p><a href="#task-cancellation">Task cancellation</a></p></li>
+<li><p><a href="#dynamically-starting-sagas-with-runsaga">Dynamically starting Sagas with runSaga</a></p></li>
+<li><p><a href="#building-examples-from-sources">Building examples from sources</a></p></li>
+<li><p><a href="#using-umd-build-in-the-browser">Using umd build in the browser</a></p></li>
+</ul>
+
+<h1>Getting started</h1>
+
+<p>安装</p>
+<figure class="highlight"><pre><code class="language-text" data-lang="text">npm install redux-saga
+</code></pre></figure>
+<p>创建Saga (使用Redux的计数器例子)</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">import { take, put } from &#39;redux-saga&#39;
+// sagas/index.js
+
+function* incrementAsync() {
+
+  while(true) {
+
+    // wait for each INCREMENT_ASYNC action  
+    const nextAction = yield take(INCREMENT_ASYNC)
+
+    // delay is a sample function
+    // return a Promise that resolves after (ms) milliseconds
+    yield delay(1000)
+
+    // dispatch INCREMENT_COUNTER
+    yield put( increment() )
+  }
+
+}
+
+export default [incrementAsync]
+</code></pre></figure>
+<p>插入redux-saga到中间件管道</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">// store/configureStore.js
+import sagaMiddleware from &#39;redux-saga&#39;
+import sagas from &#39;../sagas&#39;
+
+export default function configureStore(initialState) {
+  // Note: passing middleware as the last argument to createStore requires redux@&gt;=3.1.0
+  return createStore(
+    reducer,
+    initialState,
+    applyMiddleware(/* other middleware, */sagaMiddleware(...sagas))
+  }
+}
+</code></pre></figure>
+<h1>Waiting for future actions</h1>
+
+<p>在上面的例子中，我们创建了<code>incrementAsync</code> Saga。Saga工作的典型例子是调用<code>yield take(INCREMENT_ASYNC)</code>。</p>
+
+<p>典型的， 实际的中间件处理一些Effect构成，它们会被Action Creators触发。举个例子，
+redux-thunk 通过调用 带 <code>(getState, dispatch)</code> 带参数的thunks来处理 <em>thunks</em> 。
+redux-promise 通过调度Promise的返回值来处理Promise。redux-gen通过调用所有的迭代Action到store来处理生成器。所有这些中间件的共通是 &#39;请求每个action&#39;模式。当action发生的时候，他们会被一次又一次的调用。也就是说, 每次触发 <em>根 action</em>的时候， 它们都会被  <em>检索</em>。</p>
+
+<p>Sagas 工作方式是不一样的，他们不是在Action Creators内被触发，而是随你的应用一起被启动，并且选择监视哪些action。它们类似于守护任务，运行在后台，并且选择他们自己的逻辑进展。在上面的例子，<code>incrementAsync</code> 使用 <code>yield take(...)</code> <em>等待</em> <code>INCREMENT_ASYNC</code> action。这是一个 <em>阻塞调用</em>, 这意味着Saga 如果没有找到匹配的action将不会继续执行。</p>
+
+<p>上文，我们使用<code>take(INCREMENT_ASYNC)</code>的形式，意思是我们等待一个type是<code>INCREMENT_ASYNC</code>的action。实际上，确切的签名是 <code>take(PATTERN)</code>， 它的模式可以下面的一种：</p>
+
+<ul>
+<li><p>如果 PATTERN 是 undefined 或者 <code>&#39;*&#39;</code>。所有接入的action都将被匹配。(举例： <code>take()</code> 将匹配所有action)</p></li>
+<li><p>如果 PATTERN 是函数, 如果  <code>PATTERN(action)</code> 为true 则这个action匹配(举例： <code>take(action =&gt; action.entities)</code> 匹配所有有一个 <code>entities</code>字段的action.</p></li>
+<li><p>如果PATTERN是字符串，那么将匹配<code>action.type === PATTERN</code> (像上面的例子使用的<code>take(INCREMENT_ASYNC)</code></p></li>
+<li><p>如果PATTERN是数组，<code>action.type</code>只匹配数组中的项目。(举例 <code>take([INCREMENT, DECREMENT])</code> 会匹配action.type为 <code>INCREMENT</code> 或者 <code>DECREMENT</code>。</p></li>
+</ul>
+
+<h1>Dispatching actions to the store</h1>
+
+<p>接收到需要的action之后，Saga触发器调用<code>delay(1000)</code>，在我们的例子中返回一个约定（Promise），这个将在1秒后解决。这是一个阻塞调用，所以Saga会等待一秒后再继续执行。</p>
+
+<p>延迟之后，Saga使用 <code>put(action)</code>函数调度 <code>INCREMENT_COUNTER</code> action。与此同时，Saga会等待调度结果。如果返回普通值，Saga立刻唤醒 <em>immediately</em>，但是如果返回值是一个Promise，Saga会等待这个Promise完成（或失败）。</p>
+
+<h1>A common abstraction: Effect</h1>
+
+<p>一般来说，等待一个未知的action，等待像<code>yield delay(1000)</code>这样的未知的函数调用结果，或者等待一个调度的结果，这些都是相同的概念。在所有情况下，我们迭代某些形式的Effect。Saga所做的，实际上就是把所有这些Effect组合在一起，去实现期望的控制流。最简单的是一个接着一个的顺序执行yield来迭代Effect。你也可以使用常见的控制操作（if，while，for）去实现更复杂的控制流。或者你可以使用提供的Effect组合去表达并发 (yield race) 和 平行 (yield [...])。你也可以迭代调用其他Saga，允许强大的常规或者子程序模式。</p>
+
+<p>举例来说，<code>incrementAsync</code> 使用了无限循环 <code>while(true)</code>，它意味着这将会在整个应用程序的生命周期都会存在。</p>
+
+<p>你也可以创建只持续一段时间的Saga。举个例子，下面的Saga，等待3个<code>INCREMENT_COUNTER</code> actions, 触发一个<code>showCongratulation()</code> action，然后结束.</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">function* onBoarding() {
+
+  for(let i = 0; i &lt; 3; i++)
+    yield take(INCREMENT_COUNTER)
+
+  yield put( showCongratulation() )
+}
+</code></pre></figure>
+<h1>Declarative Effects</h1>
+
+<p>Sagas 生成器可以生成多种形式的Effect。最简单的方式是生成一个Promise。</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">function* fetchSaga() {
+
+  // fetch is a sample function
+  // returns a Promise that will resolve with the GET response
+  const products = yield fetch(&#39;/products&#39;)
+
+  // dispatch a RECEIVE_PRODUCTS action
+  yield put( receiveProducts(products) )
+}
+</code></pre></figure>
+<p>上面的例子，<code>fetch(&#39;/products&#39;)</code> 返回一个Promise并且会被Get请求解决。所以这个获取响应会被立刻执行。简单并且顺畅，但是...</p>
+
+<p>假设我们想要测试上面的生成器。</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">const iterator = fetchSaga()
+assert.deepEqual( iterator.next().value, ?? ) // what do we expect ?
+</code></pre></figure>
+<p>我们想要检查生成器的结果，在我们的例子中运行 <code>fetch(&#39;/products&#39;)</code> 的结果。在测试期间，执行真实服务是不允许的也不是一个现实的方法，所以我们不得不 <em>mock</em> 这个fetch服务，也就是说我们将不得不使用一个假的替换这个真实的<code>fetch</code>方法，我们没有真实的运行Get请求，只是检查我们调用<code>fetch</code>是否跟着正确的参数 (在这个例子中的<code>&#39;/products&#39;</code> ).</p>
+
+<p>模拟使测试更困难并且可信度更低。 另一方面, 函数简单的返回值更容易被测试，我们可以简单的使用 <code>equal()</code>去检查结果。这是写更可靠测试的一个途径。</p>
+
+<p>不确信 ? 我推荐你对这个 <a href="https://medium.com/javascript-scene/what-every-unit-test-needs-f6cd34d9836d#.4ttnnzpgc">Eric Elliott的文章</a></p>
+
+<blockquote>
+<p>(...)<code>equal()</code>, 通过本质的回答，任何一个单元测试必须回答的两个最重要的问题，但是大部分还没有:
+- 什么是真实的输出?
+- 什么是预期的输出?</p>
+
+<p>如果你完成测试但是没有回答这两个问题，你没有一个真正的单元测试。你只有一个草率的，未完成的测试。</p>
+</blockquote>
+
+<p>我们实际上需要的，仅仅是确保<code>fetchSaga</code>被调用并且参数正确。为了这个目的，这个类库提供了一些声明方式去迭代副作用，并且确保容易测试Saga逻辑。</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">import { call } from &#39;redux-saga&#39;
+
+function* fetchSaga() {
+  const products = yield call( fetch, &#39;/products&#39; ) // don&#39;t run the effect
+}
+</code></pre></figure>
+<p>我们这里使用 <code>call(fn, ...args)</code> 函数. <strong>于先前的不同的是我们不立刻执行获取调用，   通过调用<code>call</code> 创建一个effect 的描述</strong>。就像在Redux中，你使用action创建者去创建一个简单的对象去描述这个action，这个action会被Store执行，<code>call</code> 创建一个简单对象去描述这个函数的调用。redux-saga 中间件维护这个函数的调用的执行，并且当执行完成的时候，唤醒生成器。</p>
+
+<p>它允许我们容易的在Redux环境的外部去测试生成器.</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">import { call } from &#39;redux-saga&#39;
+
+const iterator = fetchSaga()
+assert.deepEqual(iterator.next().value, call(fetch, &#39;/products&#39;)) // expects a call(...) value
+</code></pre></figure>
+<p>现在，我们不需要模拟任何东西，一个简单的相等测试就满足。</p>
+
+<p>声明effect的优势，我们可以测试所有在Saga和生成器中的逻辑，只需要通过一个简单的迭代（通过结果迭代器）和一个简单的相等测试就可以了。这是一个真正的好处，你的复杂的异步操作将不再是黑盒子，你可以详细的测试他们的操作逻辑，不管它有多复杂。</p>
+
+<p>除了 <code>call</code>，<code>apply</code> 允许你提供一个<code>this</code>上下文去执行函数。</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">yield apply(context, myfunc, [arg1, arg2, ...])
+</code></pre></figure>
+<p><code>call</code> 和 <code>apply</code>是非常适合函数返回Promise结果。还有一个函数 <code>cps</code> 可以被使用到处理Node风格的函数(举例： <code>fn(...args, callback)</code> where <code>callback</code>
+是<code>(error, result) =&gt; ()</code>的形式)。 举个例子</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">import { cps } from &#39;redux-saga&#39;
+
+const content = yield cps(readFile, &#39;/path/to/file&#39;)
+</code></pre></figure>
+<p>当然测试的时候只要如下调用测试就可以了。</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">import { cps } from &#39;redux-saga&#39;
+
+const iterator = fetchSaga()
+assert.deepEqual(iterator.next().value, cps(readFile, &#39;/path/to/file&#39;) )
+</code></pre></figure>
+<h1>Error handling</h1>
+
+<p>你可以在Generator内部使用简单的try/catch语法捕捉异常。在下面的例子中，Saga捕捉 <code>api.buyProducts</code> 调用的错误(也就是一个被拒绝的Promise)</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">function* checkout(getState) {
+
+  while( yield take(types.CHECKOUT_REQUEST) ) {
+    try {
+      const cart = getState().cart
+      yield call(api.buyProducts, cart)
+      yield put(actions.checkoutSuccess(cart))
+    } catch(error) {
+      yield put(actions.checkoutFailure(error))
+    }
+  }
+}
+</code></pre></figure>
+<p>当然你不是必须通过try/catch代码块处理你的API错误，你也可以定义你的API服务返回一个普通值带一个错误标记，如下：</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">function buyProducts(cart) {
+  return doPost(...)
+    .then(result =&gt; {result})
+    .catch(error =&gt; {error})
+}
+
+function* checkout(getState) {
+  while( yield take(types.CHECKOUT_REQUEST) ) {
+    const cart = getState().cart
+    const {result, error} = yield call(api.buyProducts, cart)
+    if(!error)
+      yield put(actions.checkoutSuccess(result))
+    else
+      yield put(actions.checkoutFailure(error))
+  }
+}
+</code></pre></figure>
+<h1>Effect Combinators</h1>
+
+<p><code>yield</code>声明非常棒。它以一个简单并且线形的方式表示异步控制流程。但是我们也需要做一些并行的事情。你不能简单的如下写</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">// Wrong, effects will be executed in sequence
+const users  = yield call(fetch, &#39;/users&#39;),
+      repose = yield call(fetch, &#39;/repose&#39;)
+</code></pre></figure>
+<p>因为第二个Effect将等到第一个执行结束后再执行，我们必须改成如下形式：</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">import { call } from &#39;redux-saga&#39;
+
+// correct, effects will get executed in parallel
+const [users, repose]  = yield [
+  call(fetch, &#39;/users&#39;),
+  call(fetch, &#39;/repose&#39;)
+]
+</code></pre></figure>
+<p>当我们迭代一个Effect数组，生成器是被阻塞的直到所有的Effect都被执行完成(或者当其中有一个被拒绝，就像 <code>Promise.all</code>的运行机制 )。</p>
+
+<p>有些时候我们开始并行多次任务，但是我们不想等待，我们只想得到 <em>胜利者</em>：第一个成功运行（或者被拒绝）。<code>race</code>函数提供了一种方式去触发多个effect的竞赛。</p>
+
+<p>下面的例子展示Saga触发一个远程的获取请求和强迫这个请求1秒过期。</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">import { race, take, put } from &#39;redux-saga&#39;
+
+function* fetchPostsWithTimeout() {
+  while( yield take(FETCH_POSTS) ) {
+    // starts a race between 2 effects
+    const {posts, timeout} = yield race({
+      posts   : call(fetchApi, &#39;/posts&#39;),
+      timeout : call(delay, 1000)
+    })
+
+    if(posts)
+      put( actions.receivePosts(posts) )
+    else
+      put( actions.timeoutError() )
+  }
+}
+</code></pre></figure>
+<h1>Sequencing Sagas via yield*</h1>
+
+<p>你可以使用内建的<code>yield*</code> 操作去以连续的方式组合多个Saga。这个允许你以过程化的风格顺序执行你的 <em>宏观任务</em>。</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">function* playLevelOne(getState) { ... }
+
+function* playLevelTwo(getState) { ... }
+
+function* playLevelThree(getState) { ... }
+
+function* game(getState) {
+
+  const score1 = yield* playLevelOne(getState)
+  put(showScore(score1))
+
+  const score2 = yield* playLevelTwo(getState)
+  put(showScore(score2))
+
+  const score3 = yield* playLevelThree(getState)
+  put(showScore(score3))
+
+}
+</code></pre></figure>
+<p>注意，使用<code>yield*</code>会引起javascript 运行时传播整个序列。这个迭代器的结果 (从 <code>game()</code>)将会迭代内部迭代器的所有值。一个更强大的替代方案是使用更通用的中间件构成机制。</p>
+
+<h1>Composing Sagas</h1>
+
+<p>当使用<code>yield*</code>提供的方式组合Saga时，有一些局限:</p>
+
+<ul>
+<li><p>你可能想分别测试嵌入的生成器。在测试代码中，这导致一些重复代码这和重复执行的开销是一样的。我们不想执行嵌入的生成器，但是只想确保它被分发正确的参数。</p></li>
+<li><p>更重要的是, <code>yield*</code> 只被顺序执行的组成的任务。一次，你只可以 yield* 一个生成器。</p></li>
+</ul>
+
+<p>你可以简单的使用 <code>yield</code>并行开始一个或者多个子任务。当迭代运行一个生成器，运行前，Saga将会等待生成器终止，这时通过返回值唤醒(或者从子任务中抛出一个反向错误).</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">function* fetchPosts() {
+  yield put( actions.requestPosts() )
+  const products = yield call(fetchApi, &#39;/products&#39;)
+  yield put( actions.receivePosts(products) )
+}
+
+function* watchFetch() {
+  while ( yield take(FETCH_POSTS) ) {
+    yield call(fetchPosts) // waits for the fetchPosts task to terminate
+  }
+}
+</code></pre></figure>
+<p>迭代一个嵌入生成器将会并行开始所有的子生成器，并且等待他们完成。这时通过所有的结果唤醒。</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">function* mainSaga(getState) {
+  const results = yield [ call(task1), call(task2), ...]
+  yield put( showResults(results) )
+}
+</code></pre></figure>
+<p>实际上，Sagas相比迭代其他effect没有什么不同(未来action, timeouts ...)。这意味着你可以通过所有的其他方式，使用Effect协调器组合这些Saga。</p>
+
+<p>举个例子你也可能想用户必须在规定时间内完成游戏。</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">function* game(getState) {
+
+  let finished
+  while(!finished) {
+    // has to finish in 60 seconds
+    const {score, timeout}  = yield race({
+      score  : call( play, getState),
+      timeout : call(delay, 60000)
+    })
+
+    if(!timeout) {
+      finished = true
+      yield put( showScore(score) )
+    }
+  }
+
+}
+</code></pre></figure>
+<h1>Non blocking calls with fork/join</h1>
+
+<p><code>yield</code>声明引起生成器暂停，直到这次迭代完成或被拒绝。如果你仔细看这个例子。</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">function* watchFetch() {
+  while ( yield take(FETCH_POSTS) ) {
+    yield put( actions.requestPosts() )
+    const posts = yield call(fetchApi, &#39;/posts&#39;) // blocking call
+    yield put( actions.receivePosts(posts) )
+  }
+}
+</code></pre></figure>
+<p><code>watchFetch</code> 生成器将会等待到<code>yield call(fetchApi, &#39;/posts&#39;)</code> 运行结束。设想
+<code>FETCH_POSTS</code> action 被 <code>刷新</code>按钮触发。如果我们的应用每次获取禁用这个按钮(不存在并发获取)，这里将不会有问题，因为我们知道没有<code>FETCH_POSTS</code>action会发生直到我们得到<code>fetchApi</code>调用的响应。</p>
+
+<p>但是当应用程序允许用户点击<code>刷新</code>按钮而不需要等待当前请求完成，什么事情会发生？</p>
+
+<p>下面的例子将阐明一个可能的事件发生顺序。</p>
+<figure class="highlight"><pre><code class="language-text" data-lang="text">UI                              watchFetch
+--------------------------------------------------------
+FETCH_POSTS.....................call fetchApi........... waiting to resolve
+........................................................
+........................................................                     
+FETCH_POSTS............................................. missed
+........................................................
+FETCH_POSTS............................................. missed
+................................fetchApi returned.......
+........................................................
+</code></pre></figure>
+<p>当<code>watchFetch</code>阻塞在<code>fetchApi</code>调用，所有的在调用和响应之间的<code>FETCH_POSTS</code>都被错过。为了表达不阻塞的调用，我们可以使用<code>fork</code>函数。上面的例子可以使用<code>fork</code>重写，如下：</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">import { fork, call, take, put } from &#39;redux-saga&#39;
+
+function* fetchPosts() {
+  yield put( actions.requestPosts() )
+  const posts = yield call(fetchApi, &#39;/posts&#39;)
+  yield put( actions.receivePosts(posts) )
+}
+
+function* watchFetch() {
+  while ( yield take(FETCH_POSTS) ) {
+    yield fork(fetchPosts) // non blocking call
+  }
+}
+</code></pre></figure>
+<p><code>fork</code>调用函数和生成器和普通effect一样。</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">yield fork(func, ...args)       // simple async functions (...) -&gt; Promise
+yield fork(generator, ...args)  // Generator functions
+yield fork( put(someActions) )  // Simple effects
+</code></pre></figure>
+<p><code>yield fork(api)</code>的结果是一个 <em>任务描述符</em>。为了延迟取得分支的任务结果，我们使用<code>join</code>函数</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">import { fork, join } from &#39;redux-saga&#39;
+
+function* child() { ... }
+
+function *parent() {
+  // non blocking call
+  const task = yield fork(subtask, ...args)
+
+  // ... later
+  // now a blocking call, will resume with the outcome of task
+  const result = yield join(task)
+
+}
+</code></pre></figure>
+<p>任务对象暴露了一些很有用的方法</p>
+
+<table>
+  <tr>
+    <th>方法</th>
+    <th>返回值</th>
+  </tr>
+  <tr>
+    <td>task.isRunning()</td>
+    <td>如果是true则任务没有完成或异常</td>
+  </tr>
+  <tr>
+    <td>task.result()</td>
+    <td>任务的返回值， 如果任务还在运行则是 `undefined` </td>
+  </tr>
+  <tr>
+    <td>task.error()</td>
+    <td>任务抛出异常。如果任务还在运行中则返回 `undefined` </td>
+  </tr>
+  <tr>
+    <td>task.done</td>
+    <td>一个Promise
+        <ul>
+          <li>任务完成并返回值 with task's return value</li>
+          <li>任务失败并抛出异常</li>
+        </ul>
+      </td>
+  </tr>
+</table>
+
+<h1>Task cancellation</h1>
+
+<p>任务取消</p>
+
+<p>当任务被分支，你可以通过执行<code>yield cancel(task)</code>终止。取消一个执行的任务内部会抛出一个<code>SagaCancellationException</code>异常。</p>
+
+<p>为了查看它是怎么工作的，让我们研究一个简单的例子。一个后台同步可以被开始和结束通过页面UI命令。 下面接收一个<code>START_BACKGROUND_SYNC</code> action,我们fork一个后台任务，这个任务会定期从远程服务器同步数据。</p>
+
+<p>这个任务会不断的执行，直到 <code>STOP_BACKGROUND_SYNC</code> action 触发。 这时我们取消后台任务并且等待下一个<code>START_BACKGROUND_SYNC</code> action.   </p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">import { take, put, call, fork, cancel, SagaCancellationException } from &#39;redux-saga&#39;
+import actions from &#39;somewhere&#39;
+import { someApi, delay } from &#39;somewhere&#39;
+
+function* bgSync() {
+  try {
+    while(true) {
+      yield put(actions.requestStart())
+      const result = yield call(someApi)
+      yield put(actions.requestSuccess(result))
+      yield call(delay, 5000)
+    }
+  } catch(error) {
+    if(error instanceof SagaCancellationException)
+      yield put(actions.requestFailure(&#39;Sync cancelled!&#39;))
+  }
+}
+
+function* main() {
+  while( yield take(START_BACKGROUND_SYNC) ) {
+    // starts the task in the background
+    const bgSyncTask = yield fork(bgSync)
+
+    // wait for the user stop action
+    yield take(STOP_BACKGROUND_SYNC)
+    // user clicked stop. cancel the background task
+    // this will throw a SagaCancellationException into task
+    yield cancel(bgSyncTask)
+  }
+}
+</code></pre></figure>
+<p><code>yield cancel(bgSyncTask)</code> 将会在当前运行的内部触发一个<code>SagaCancellationException</code>异常。在上面的例子， 异常在<code>bgSync</code>中被捕捉，否则异常会被抛出到<code>main</code>，并且如果异常在<code>main</code>中没有被处理，它会沿着调用链网上冒泡，就像一个普通的javascript同步函数异常沿着调用链冒泡。</p>
+
+<p>取消一个运行中的任务也会取消当前被阻塞任务所在的effect。</p>
+
+<p>举个例子，假设在应用程序生命周期中确定的某一个点，我们有这样一个预调用链</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">function* main() {
+  const task = yield fork(subtask)
+  ...
+  // later
+  yield cancel(task)
+}
+
+function* subtask() {
+  ...
+  yield call(subtask2) // currently blocked on this call
+  ...
+}
+
+function* subtask2() {
+  ...
+  yield call(someApi) // currently blocked on this all
+  ...
+}
+</code></pre></figure>
+<p><code>yield cancel(task)</code>将会触发一个<code>subtast</code>的取消操作，然后转到触发<code>subtask2</code>的取消。在<code>subtask2</code>中，一个<code>SagaCancellationException</code>将会被抛出，并且另一个<code>SagaCancellationException</code>将会在<code>subtask</code>中被抛出。 如果<code>subtask</code>省略了处理取消异常，这个异常将会冒泡传出到<code>main</code>。</p>
+
+<p>取消异常的主要作用是允许取消任务后去执行某一个清理逻辑。所以我们不允许程序进入一个前后不一致的状态。在上面后台同步执行的例子中，通过捕捉取消异常，<code>bgSync</code>会调度一个<code>requestFailure</code> action。 否则，这个store会进去前后不一致的状态(举个例子：等待执行请求的结果)</p>
+
+<blockquote>
+<p>记住<code>yield cancel(task)</code>不会等待取消任务这个操作完成，这一点非常重要。(换句话说去执行它的异常处理是取消这个操作完成的时候)。cancel的作用有点像fork。当cancel开始它就返回值。
+一旦取消，任务需要尽快完成它的清理逻辑。在有些场合，清理逻辑可以包含一些异步操作，取消任务是一个单独的进程，并且这里没有办法重新进入主控制流程(除非通过Redux store调度action。然而这会导致复杂的，很难理解的控制流程。 所以最好是尽快结束任务).</p>
+</blockquote>
+
+<h2>Automatic cancellation</h2>
+
+<p>除了手动取消，这里有一些自动触发取消的例子。</p>
+
+<p>1- 在一个<code>race</code> effect。所有的比赛竞争对手，除了胜利者，其它都自动取消。</p>
+
+<p>2- 在一个并行effect (<code>yield [...]</code>)。当其中一个子effect失败（于Promise.all相似）， 在这个例子中其他的子effect全部自动取消。</p>
+
+<p>不同于手动取消，未处理的取消异常不会冒泡到实际saga运行的race/parallel effect。然而，假如取消任务并且没有处理取消异常，一个警告log会写到控制台。</p>
+
+<h1>Dynamically starting Sagas with runSaga</h1>
+
+<p>函数<code>runSaga</code>允许在Redux中间件环境的外部开始saga。除了store action外，它也允许你连接外部的输入输出。</p>
+
+<p>举个例子，你可以在服务端这样使用Saga</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">import serverSaga from &#39;somewhere&#39;
+import {runSaga, storeIO} from &#39;redux-saga&#39;
+import configureStore from &#39;somewhere&#39;
+import rootReducer from &#39;somewhere&#39;
+
+const store = configureStore(rootReducer)
+runSaga(
+  serverSaga(store.getState),
+  storeIO(store)
+).done.then(...)
+</code></pre></figure>
+<p><code>runSaga</code>返回一个任务对象，就像<code>fork</code> effect的返回值。</p>
+
+<p>此外获取和调度action到store，<code>runSaga</code>也可以连接其他输入输出代码。它允许你在Redux外部，利用所有Saga的特性实现控制流。</p>
+
+<p>这个方法具有如下签名</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">runSaga(iterator, {subscribe, dispatch}, [monitor])
+</code></pre></figure>
+<p>参数</p>
+
+<ul>
+<li><p><code>iterator: {next, throw}</code> : 一个迭代器对象，通常调用函数生成器</p></li>
+<li><p><code>subscribe(callback) =&gt; unsubscribe</code>: 也就是接收一个回调函数，并返回一个退订函数</p>
+
+<ul>
+<li><code>callback(action)</code> : 回调函数 (runSaga提供) 用于订阅输入事件。 <code>subscribe</code>必须支持注册多个订阅。</li>
+<li><code>unsubscribe()</code> : 被<code>runSaga</code>调用，用于当输入程序完成（或者一般return或者异常）时退订</li>
+</ul></li>
+<li><p><code>dispatch(action) =&gt; result</code>: 用于完成 <code>put</code> effect。每次运行<code>yield put(action)</code>，<code>dispatch</code>会和<code>action</code>一起被调用，<code>dispatch</code>的返回值被用于完成<code>put</code> effect。Promise结果自动完成或者取消。</p></li>
+<li><p><code>monitor(sagaAction)</code> (可选): 是被用于调用所有Saga关联事件的回调。在中间件的版本，所有action都调度到Redux Store。详细查看<a href="https://github.com/yelouafi/redux-saga/blob/master/examples/sagaMonitor.js">sagaMonitor example</a> 的用法.</p></li>
+</ul>
+
+<p>参数<code>subscribe</code>用于完成<code>take(action)</code> effects，每次<code>subscribe</code> 运行一个action或者他的回调，Saga会阻塞在<code>take(PATTERN)</code>，并且take匹配当前即将运行的action，并且唤醒这个action。</p>
+
+<h1>Building examples from sources</h1>
+
+<p>预先要求</p>
+
+<ul>
+<li>browserify</li>
+<li><a href="https://github.com/mattdesl/budo">budo</a> ， 在线安装： <code>npm i -g budo</code></li>
+</ul>
+
+<p>你可以手动运行例子，或者打开每个例子根目录的<code>index.html</code>去运行。</p>
+<figure class="highlight"><pre><code class="language-text" data-lang="text">git clone https://github.com/yelouafi/redux-saga.git
+cd redux-saga
+npm install
+npm test
+</code></pre></figure>
+<p>下面的例子是从Redux移植（到目前为止）</p>
+
+<p>计数器例子
+```
+// run with live-reload server
+npm run counter</p>
+
+<p>// manual build
+npm run build-counter</p>
+
+<p>// test sample for the generator
+npm run test-counter
+```</p>
+
+<p>购物车例子
+```
+// run with live-reload server
+npm run shop</p>
+
+<p>// manual build
+npm run build-shop</p>
+
+<p>// test sample for the generator
+npm run test-shop
+```</p>
+
+<p>异步例子
+```
+// run with live-reload server
+npm run async</p>
+
+<p>// manual build
+npm run build-async</p>
+
+<p>//sorry, no tests yet
+```</p>
+
+<p>real-world例子 (使用webpack热启动)
+<code>
+cd examples/real-world
+npm install
+npm start
+</code></p>
+
+<h1>Using umd build in the browser</h1>
+
+<p>在<code>dist/</code>目录，<code>redux-saga</code>有一个可用的 <strong>umd</strong> 构建。使用umd构建，<code>redux-saga</code> 可以作为<code>ReduxSaga</code>在window对象中使用。如果你不使用webpack或者browserify，umd版本非常有用，你可以通过<a href="unpkg.com">unpkg</a>直接使用。
+下面是可用的构建:
+<a href="https://unpkg.com/redux-saga/dist/redux-saga.js">https://unpkg.com/redux-saga/dist/redux-saga.js</a>
+<a href="https://unpkg.com/redux-saga/dist/redux-saga.min.js">https://unpkg.com/redux-saga/dist/redux-saga.min.js</a></p>
+
+<p><strong>重要提示!</strong> 如果目标浏览器不支持 <em>es2015 generators</em> 你必须使用好的转换库，如 <em>babel</em>: <a href="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.25/browser-polyfill.min.js">browser-polyfill.min.js</a>. 这个库必须在 <strong>redux-saga</strong> 前被加载.</p>
+
+    </div>
+</div>
+
+<div class="related_posts-container" style="max-width: 790px;">
+    <p class="related_posts-header">RELATED ARTICLES</p>
+
+    <div layout="rows center-spread">
+
+        
+        
+        
+            <a href="/2015/10/linux-install-maven/">
+                <div class="card card--article not-visible">
+                    <div class="card-body">
+                        <div class="card-title card-title--articleIfNoImage">Linux下安装Maven</div>
+                        <p class="card-description card-description--clamp-14">“linux install maven”</p>
+                        <p class="card-description card-article-preview">
+                            简介Apache Maven，是一个软件（特别是Java软件）项目管理及自动构建工具，由Apache软件基金会所提供。基于项目对象模型（POM）概念，Maven利用一个中央信息片断能管理一个项目的构建、报告和文档等步骤。曾是Jakarta项目的子项目，现为独立Apache项目。准备Maven（这里以最新的3.3版本为例。注意：如果使用3.3版本，那么你的JDK版本最低应为1.7，这些可以在官方网站中看到。）开始首先下载Maven3.3.3，你可以从官网直接下载，或在终端中使用命令下载，解压，然后移动到你想要安装的目录当中，例如我是移动到了/home/sunmoon/wnglmng/dev这个目录下：sunmoon@sunmoon-io:~$ wget http://apache.fay...
+                        </p>
+                        <p></p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="card-footer-wrapper" layout="row bottom-left">
+                            <div class="card-type is-notShownIfHover">2015-10-27</div>
+                            <div class="card-tag is-notShownIfHover">@WngLMng</div>
+                            <div class="card-tag is-shownIfHover">
+                                
+                                    Linux &nbsp;&nbsp;
+                                
+                                    Maven &nbsp;&nbsp;
+                                
+                            </div>
+                            <div class="card-logo is-shownIfHover" self="right"></div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+            <a href="/2015/11/hibernate-validator/">
+                <div class="card card--article not-visible" >
+                    <div class="card-body">
+                        <div class="card-title">Hibernate Validator</div>
+                        <div class="card-description card-description--clamp-0">
+                            ##Maven依赖搜索maven依赖时，可使用[Maven仓库](http://search.maven.org/)进行搜索。Hibernate Validator依赖如下：```xml	org.hibernate	hibernate-validator	4.3.1.Final```##校验规则```Bean Validation 中内置的 constraint@Null 	被注释的元素必须...
+                        </div>
+                    </div>
+                    <div class="card-hero">
+                        <div class="card-image card-image--size-185" style="background-image: url(http://ww2.sinaimg.cn/mw690/906cb9dbgw1fayovy436bj21fi0pagpd.jpg);"></div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="card-footer-wrapper" layout="row bottom-left">
+                            <div class="card-type is-notShownIfHover">2015-11-10</div>
+                            <div class="card-tag is-notShownIfHover">@WngLMng</div>
+                            <div class="card-tag is-shownIfHover">
+                                
+                                    Java &nbsp;&nbsp;
+                                
+                            </div>
+                            <div class="card-logo is-shownIfHover" self="right"></div>
+                        </div>
+                    </div>
+                 </div>
+            </a>
+        
+        
+
+    </div>
+</div>
+
+<div class="section section-comments" style="display: none;">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <!-- 多说分享 -->
+            <div class="ds-share" data-thread-key=/2015/10/redux-saga/ data-title=Linux下安装Maven data-images=http://www.wnglmng.com/2015/10/redux-saga/ data-content="" data-url=http://www.wnglmng.com/2015/10/redux-saga/>
+                <div class="ds-share-inline">
+                  <ul  class="ds-share-icons-16">
+                  	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+                    <li><a class="ds-douban" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                    <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                    <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                  </ul>
+                  <div class="ds-share-icons-more">
+                  </div>
+                </div>
+             </div>
+            <!-- 多说评论框 start -->
+            <div class="ds-thread" data-thread-key="/2015/10/redux-saga/" data-title=Linux下安装Maven data-url=http://www.wnglmng.com/2015/10/redux-saga/></div>
+            <!-- 多说评论框 end -->
+            <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+            <script type="text/javascript">
+            var duoshuoQuery = {short_name:"wnglmng"};
+            	(function() {
+            		var ds = document.createElement('script');
+            		ds.type = 'text/javascript';ds.async = true;
+            		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            		ds.charset = 'UTF-8';
+            		(document.getElementsByTagName('head')[0]
+            		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+            	})();
+            </script>
+            <!-- 多说公共JS代码 end -->
+        </div>
+    </div>
+</div>
+
+
+    </div>
+    <div id="footer" layout="rows center-left">
+    <div id="end-mark">
+        <div class="end-mark-icon"></div>
+        <p class="copyright">WngLMng' Blog © 2015&nbsp;&nbsp;·&nbsp;&nbsp;一个写代码的</p>
+    </div>
+    <div id="footer-links" self="right">
+        <ul>
+            <a href="#"><li class="wechat" target="_blank"></li></a>
+            <a href="mailto:wnglmng@gmail.com" target="_blank"><li class="mail"></li></a>
+            <a href="http://weibo.com/sunmoon1993" target="_blank"><li class="weibo"></li></a>
+            <a href="https://github.com/wnglmng" target="_blank"><li class="github"></li></a>
+        </ul>
+    </div>
+</div>
+
+</body>
+<!--   Core JS Files   -->
+<script type="text/javascript" src="/assets/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript" src="/assets/js/global.js"></script>
+<script type="text/javascript" src="/assets/js/homepage.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.mixitup.min.js"></script>
+<script type="text/javascript" src="/assets/js/list.js"></script>
+<script type="text/javascript" src="/assets/js/smooth-scroll.js"></script>
+
+</html>
