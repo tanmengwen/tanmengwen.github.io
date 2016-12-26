@@ -2,7 +2,7 @@
 layout:         post
 title:          Memcache简单介绍
 subtitle:       
-card-image:     http://ww4.sinaimg.cn/mw690/906cb9dbgw1fayofw6kcmj20jj099jsj.jpg
+card-image:     https://ww4.sinaimg.cn/mw690/906cb9dbgw1fayofw6kcmj20jj099jsj.jpg
 date:           2015-12-05 19:00:00
 tags:           Cache Memcache
 post-card-type: image

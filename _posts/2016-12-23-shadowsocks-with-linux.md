@@ -2,7 +2,7 @@
 layout:         post
 title:          Shadowsocks 搭建 VPN
 subtitle:       set up vpn with shadowsocks at linux
-card-image:     http://ww4.sinaimg.cn/mw690/906cb9dbgw1fb1y5flu77j20b806qmxg.jpg
+card-image:     https://ww4.sinaimg.cn/mw690/906cb9dbgw1fb1y5flu77j20b806qmxg.jpg
 date:           2016-12-23 19:00:00
 tags:           VPN Linux
 post-card-type: image
@@ -58,6 +58,6 @@ $ /sbin/iptables -I INPUT -p tcp --dport 8388 -j ACCEPT
 
 到 https://shadowsocks.org/en/download/clients.html 下载客户端，然后输入你的配置即可
 
-![](http://ww3.sinaimg.cn/mw690/906cb9dbjw1fb1wtxe06kj20sg0hyq4w.jpg)
+![](https://ww3.sinaimg.cn/mw690/906cb9dbjw1fb1wtxe06kj20sg0hyq4w.jpg)
 
 **注意** 如果希望服务一直在后台中跑下去，可以在 screen 中执行以上操作，这样即使关闭 SSH 连接，服务也会一直在服务器中运行。

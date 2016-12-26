@@ -2,7 +2,7 @@
 layout:     	post
 title:      	CentOS 6.4 x32 安装 MySQL
 subtitle:   
-card-image: 	http://ww4.sinaimg.cn/mw690/906cb9dbgw1fayosx67eoj20we0f4juo.jpg
+card-image: 	https://ww4.sinaimg.cn/mw690/906cb9dbgw1fayosx67eoj20we0f4juo.jpg
 date:       	2016-4-16 23:35:00
 tags:      		Mysql Linux
 post-card-type: image

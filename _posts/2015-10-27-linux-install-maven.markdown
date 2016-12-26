@@ -2,7 +2,7 @@
 layout:         post
 title:          Linux下安装Maven
 subtitle:       linux install maven
-card-image:     http://ww1.sinaimg.cn/large/906cb9dbgw1f9ilpmreqhj21kw0zk151.jpg
+card-image:     https://ww1.sinaimg.cn/large/906cb9dbgw1f9ilpmreqhj21kw0zk151.jpg
 date:           2015-10-26 19:00:00
 tags:           Linux Maven
 post-card-type: article

@@ -2,7 +2,7 @@
 layout:     	post
 title:      	Hibernate Validator
 subtitle:   	
-card-image: 	http://ww2.sinaimg.cn/mw690/906cb9dbgw1fayovy436bj21fi0pagpd.jpg
+card-image: 	https://ww2.sinaimg.cn/mw690/906cb9dbgw1fayovy436bj21fi0pagpd.jpg
 date:       	2015-11-10 13:00:00
 tags:       	Java
 post-card-type: image
