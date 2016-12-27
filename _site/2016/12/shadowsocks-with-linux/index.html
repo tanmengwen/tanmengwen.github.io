@@ -36,14 +36,14 @@
         <a href="/"><div class="logo logo-isNotVisIfMobile">WngLMng's Blog</div></a>
         <a href="/"><div class="logo logo-isVisIfMobile"></div></a>
     </div>
-    <div class="nav-isNotVisIfMobile">
+    <div class="nav-isNotVisIfMobile" style="display: none">
         <div class="item">
-            <a href="tags">Tags</a>
+            <a href="/tags">Tags</a>
         </div>
     </div>
-    <div class="nav-isVisIfMobile">
+    <div class="nav-isVisIfMobile" style="display: none">
         <div class="item">
-            <a href="tags">Tags</a>
+            <a href="/tags">Tags</a>
         </div>
     </div>
 </div>
@@ -93,7 +93,7 @@ $ ssserver -c /etc/shadowsocks.json -d stop // 关闭
 
 <p>到 <a href="https://shadowsocks.org/en/download/clients.html">https://shadowsocks.org/en/download/clients.html</a> 下载客户端，然后输入你的配置即可</p>
 
-<p><img src="http://ww3.sinaimg.cn/mw690/906cb9dbjw1fb1wtxe06kj20sg0hyq4w.jpg" alt=""></p>
+<p><img src="https://ww3.sinaimg.cn/mw690/906cb9dbjw1fb1wtxe06kj20sg0hyq4w.jpg" alt=""></p>
 
 <p><strong>注意</strong> 如果希望服务一直在后台中跑下去，可以在 screen 中执行以上操作，这样即使关闭 SSH 连接，服务也会一直在服务器中运行。</p>
 
@@ -142,41 +142,6 @@ $ ssserver -c /etc/shadowsocks.json -d stop // 关闭
     </div>
 </div>
 
-<div class="section section-comments" style="display: none;">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <!-- 多说分享 -->
-            <div class="ds-share" data-thread-key=/2016/12/shadowsocks-with-linux/ data-title=Shadowsocks 搭建 VPN data-images=http://www.wnglmng.com/2016/12/shadowsocks-with-linux/ data-content="" data-url=http://www.wnglmng.com/2016/12/shadowsocks-with-linux/>
-                <div class="ds-share-inline">
-                  <ul  class="ds-share-icons-16">
-                  	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-                    <li><a class="ds-douban" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
-                    <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-                    <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-                  </ul>
-                  <div class="ds-share-icons-more">
-                  </div>
-                </div>
-             </div>
-            <!-- 多说评论框 start -->
-            <div class="ds-thread" data-thread-key="/2016/12/shadowsocks-with-linux/" data-title=Shadowsocks 搭建 VPN data-url=http://www.wnglmng.com/2016/12/shadowsocks-with-linux/></div>
-            <!-- 多说评论框 end -->
-            <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-            <script type="text/javascript">
-            var duoshuoQuery = {short_name:"wnglmng"};
-            	(function() {
-            		var ds = document.createElement('script');
-            		ds.type = 'text/javascript';ds.async = true;
-            		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-            		ds.charset = 'UTF-8';
-            		(document.getElementsByTagName('head')[0]
-            		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-            	})();
-            </script>
-            <!-- 多说公共JS代码 end -->
-        </div>
-    </div>
-</div>
 
 
     </div>
