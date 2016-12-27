@@ -2,10 +2,10 @@
 layout: default
 ---
 
-<div class="section section-text post-content">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            {{ content }}
-        </div>
+<link rel="stylesheet" type="text/css" href="{{ "/assets/css/article.css" | prepend: site.baseurl }}">
+
+<div class="page-wrapper">
+    <div class="container--text">
+        {{ content }}
     </div>
 </div>
