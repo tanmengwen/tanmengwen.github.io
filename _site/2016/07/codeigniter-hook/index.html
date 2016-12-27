@@ -147,7 +147,6 @@ $hook[&#39;post_controller&#39;][] = array(
         
         
         
-        
             <a href="/2016/06/remote-host-identification-has-changed/">
                 <div class="card card--article not-visible" >
                     <div class="card-body">
@@ -181,18 +180,26 @@ $hook[&#39;post_controller&#39;][] = array(
         
         
         
-        
-            <a href="http://blog.fir.im/" target="_blank">
-                <div class="card card--collection not-visible" style="background:#0C0C0C url(https://ww2.sinaimg.cn/mw690/906cb9dbgw1fazz7yw2hcj20ki0wm3z5.jpg) no-repeat bottom center;background-size:cover;background-position: center center;">
-                    <div style="height: 100%;width: 100%;background: rgba(0, 0, 0, 0.5);">
-                        <div class="card-body">
-                            <div class="card-title card-title--articleIfNoImage">飞行日志</div>
-                            <p class="card-description card-description--clamp-14">“这是 fir.im 的官方博客，我们会将 fir.im 的产品更新、常见问题、技术周刊 weekly 以及一些市场活动信息放到这里。目前开设的栏目主要包括「更新日志」、「常见问题」、「fir.im Weekly」、「市场活动」、「媒体报道」、「一些杂记」等。另外，为方便大家进入 fir.im, BugHD, inCode 网站，我们在博客「菜单」中，也加入了链接。”</p>
-                        </div>
-                        <div class="card-footer">
-                            <div class="card-footer-wrapper" layout="row bottom-left">
-                                <div class="card-tag is-notShownIfHover">@飞行日志</div>
+            <a href="/2016/08/async-open-new-tab-in-brower/">
+                <div class="card card--article not-visible">
+                    <div class="card-body">
+                        <div class="card-title card-title--articleIfNoImage">浏览器中异步打开新标签页</div>
+                        <p class="card-description card-description--clamp-14">“async open a new tab in brower”</p>
+                        <p class="card-description card-article-preview">
+                            最近在做项目，需要异步获取服务器端返回的URL，然后在新的标签页中打开该URL（不要问我为什么不在当前页面加载，因为种种原因，用户不希望这个页面消失，只想在新标签页中处理工作，和我们的需求有很大关系）。然后发现各种问题，有的浏览器可以，但是有的浏览器被拦截，甚至有的浏览器既不被拦截又一点反应没有。主要原因是，当 window.open 为用户触发事件内部或者加载时，不会被拦截，一旦将弹出代码移动到 ajax 或者一段异步代码内部，马上就出现被拦截的表现了，因为浏览器认为这是不安全的行为，默认都会被拦截。在网上找了些资料，多多少少会有些问题，可能是我的姿势不对。最后实现代码如下：```javascript// open a new blank tabvar createNewInterv...
+                        </p>
+                        <p></p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="card-footer-wrapper" layout="row bottom-left">
+                            <div class="card-type is-notShownIfHover">2016-08-28</div>
+                            <div class="card-tag is-notShownIfHover">@WngLMng</div>
+                            <div class="card-tag is-shownIfHover">
+                                
+                                    JavaScript &nbsp;&nbsp;
+                                
                             </div>
+                            <div class="card-logo is-shownIfHover" self="right"></div>
                         </div>
                     </div>
                 </div>

@@ -35,25 +35,6 @@ subtitle:   嗨，我是王立明，一名来自黑龙江省鹤岗市的男生�
             </a>
         </li>
         {% endif %}
-        {% if post.post-card-type == 'website' %}
-        <li class="mix">
-            <a href="{{ post.website-url }}" target="_blank">
-                <div class="card card--collection not-visible" style="background:#0C0C0C url({{ post.card-image }}) no-repeat bottom center;background-size:cover;background-position: center center;">
-                    <div style="height: 100%;width: 100%;background: rgba(0, 0, 0, 0.5);">
-                        <div class="card-body">
-                            <div class="card-title card-title--articleIfNoImage">{{ post.title }}</div>
-                            <p class="card-description card-description--clamp-14">“{{ post.subtitle }}”</p>
-                        </div>
-                        <div class="card-footer">
-                            <div class="card-footer-wrapper" layout="row bottom-left">
-                                <div class="card-tag is-notShownIfHover">@{{ post.author }}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        {% endif %}
         {% if post.post-card-type == 'image' %}
         <li class="mix">
             <a href="{{ post.url }}">

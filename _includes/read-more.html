@@ -31,23 +31,6 @@
                 </div>
             </a>
         {% endif %}
-        {% if current.post-card-type == 'website' %}
-            <a href="{{ current.website-url }}" target="_blank">
-                <div class="card card--collection not-visible" style="background:#0C0C0C url({{ current.card-image }}) no-repeat bottom center;background-size:cover;background-position: center center;">
-                    <div style="height: 100%;width: 100%;background: rgba(0, 0, 0, 0.5);">
-                        <div class="card-body">
-                            <div class="card-title card-title--articleIfNoImage">{{ current.title }}</div>
-                            <p class="card-description card-description--clamp-14">“{{ current.subtitle }}”</p>
-                        </div>
-                        <div class="card-footer">
-                            <div class="card-footer-wrapper" layout="row bottom-left">
-                                <div class="card-tag is-notShownIfHover">@{{ current.author }}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        {% endif %}
         {% if current.post-card-type == 'image' %}
             <a href="{{ current.url }}">
                 <div class="card card--article not-visible" >
@@ -100,23 +83,6 @@
                                 {% endfor %}
                             </div>
                             <div class="card-logo is-shownIfHover" self="right"></div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        {% endif %}
-        {% if current.post-card-type == 'website' %}
-            <a href="{{ current.website-url }}" target="_blank">
-                <div class="card card--collection not-visible" style="background:#0C0C0C url({{ current.card-image }}) no-repeat bottom center;background-size:cover;background-position: center center;">
-                    <div style="height: 100%;width: 100%;background: rgba(0, 0, 0, 0.5);">
-                        <div class="card-body">
-                            <div class="card-title card-title--articleIfNoImage">{{ current.title }}</div>
-                            <p class="card-description card-description--clamp-14">“{{ current.subtitle }}”</p>
-                        </div>
-                        <div class="card-footer">
-                            <div class="card-footer-wrapper" layout="row bottom-left">
-                                <div class="card-tag is-notShownIfHover">@{{ current.author }}</div>
-                            </div>
                         </div>
                     </div>
                 </div>
