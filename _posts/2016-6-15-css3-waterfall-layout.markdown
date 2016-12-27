@@ -122,4 +122,6 @@ JS代码如下：
 ![](https://ww1.sinaimg.cn/large/906cb9dbgw1f9ilrtrxm6j21kw0xutjw.jpg)
 ![](https://ww1.sinaimg.cn/large/906cb9dbgw1f9ilsf934oj21kw0xuarc.jpg)
 
+---
+
 转自[CSS3多列布局实现瀑布流](http://codepen.io/markahcn/pen/qJdHK)
