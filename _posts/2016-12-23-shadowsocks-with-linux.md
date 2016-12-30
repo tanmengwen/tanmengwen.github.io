@@ -61,3 +61,8 @@ $ /sbin/iptables -I INPUT -p tcp --dport 8388 -j ACCEPT
 ![](https://ww3.sinaimg.cn/mw690/906cb9dbjw1fb1wtxe06kj20sg0hyq4w.jpg)
 
 **注意** 如果希望服务一直在后台中跑下去，可以在 screen 中执行以上操作，这样即使关闭 SSH 连接，服务也会一直在服务器中运行。
+
+## Iterm 代理
+
+* [使用shadowsocks及 ProxyChains-NG 实现终端(iterm)下代理](https://segmentfault.com/a/1190000004607285)
+* [MacOS 让终端命令使用全局代理](http://www.jianshu.com/p/bee7c63c3d50)
