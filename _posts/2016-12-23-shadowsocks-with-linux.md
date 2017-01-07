@@ -4,7 +4,7 @@ title:          Shadowsocks 搭建 VPN
 subtitle:       set up vpn with shadowsocks at linux
 card-image:     https://ww4.sinaimg.cn/mw690/906cb9dbgw1fb1y5flu77j20b806qmxg.jpg
 date:           2016-12-23 19:00:00
-tags:           VPN Linux
+tags:           code
 post-card-type: image
 ---
 

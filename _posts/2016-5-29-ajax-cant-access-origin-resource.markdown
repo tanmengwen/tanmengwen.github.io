@@ -4,7 +4,7 @@ title:      	Ajax 跨域访问
 subtitle:   	ajax access origin resource
 card-image: 	
 date:       	2016-05-29 21:00:00
-tags:       	Web
+tags:       	code
 post-card-type: article
 ---
 

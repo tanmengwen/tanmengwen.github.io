@@ -26,11 +26,11 @@ body {
 }
 
 h1 {
-	font-size:45px;
-	font-weight:700;
-	line-height:53px;
-	margin: 0px 0 16px 0;
-	color: #1D2129;
+	font-size: 45px;
+    font-weight: 300;
+    line-height: 53px;
+    margin:0px 0 16px 0;
+    color:#1D2129;
 }
 
 h2 {

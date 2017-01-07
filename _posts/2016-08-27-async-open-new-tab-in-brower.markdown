@@ -4,7 +4,7 @@ title:          浏览器中异步打开新标签页
 subtitle:       async open a new tab in brower
 card-image:     
 date:           2016-08-27 19:00:00
-tags:           JavaScript
+tags:           code
 post-card-type: article
 ---
 

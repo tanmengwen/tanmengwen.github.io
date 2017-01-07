@@ -4,7 +4,7 @@ title:          使用免费 SSL 证书 Let's Encrypt(certbot) 搭建 Https
 subtitle:       build up https server with nginx and Let's Encrypt
 card-image:     https://ws1.sinaimg.cn/mw690/906cb9dbgw1fb57wb1qh4j21ao0iwdik.jpg
 date:           2016-12-25 19:00:00
-tags:           Nginx Https
+tags:           code
 post-card-type: image
 ---
 

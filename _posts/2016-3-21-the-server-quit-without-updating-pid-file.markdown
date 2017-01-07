@@ -4,7 +4,7 @@ title:          The server quit without updating PID file.
 subtitle:   
 card-image:     https://ww3.sinaimg.cn/mw690/906cb9dbgw1fayouoc4xij21kw0f5jxk.jpg
 date:           2016-3-21 23:35:00
-tags:           Mysql
+tags:           code
 post-card-type: image
 ---
 

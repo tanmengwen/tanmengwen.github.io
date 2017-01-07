@@ -4,7 +4,7 @@ title:      	CodeIgniter 钩子
 subtitle:   	CodeIgniter Hooks
 card-image: 	
 date:       	2016-07-09 23:00:00
-tags:       	PHP
+tags:       	code
 post-card-type: article
 ---
 

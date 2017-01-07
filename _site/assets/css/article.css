@@ -341,7 +341,8 @@ input[type="tel"] {
 }
 
 .container--text {
-    max-width: 680px; margin:0 auto 60px auto;
+    max-width: 680px;
+    margin:0 auto 60px auto;
 }
 .container--image {
     overflow: hidden;
@@ -415,7 +416,7 @@ input[type="tel"] {
 }
 
 @media screen and (max-height: 700px) and (min-width: 1225px){
-h1 {
-    margin: 120px 0 16px 0;
-}
+    h1 {
+        margin: 60px 0 16px 0;
+    }
 }

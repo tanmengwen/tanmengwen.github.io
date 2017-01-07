@@ -4,7 +4,7 @@ title:    	  	CSS3多列布局实现瀑布流
 subtitle:   
 card-image: 	https://ww1.sinaimg.cn/mw690/906cb9dbgw1fayoq6tylaj20ue0ggn35.jpg
 date:       	2016-06-15 21:00:00
-tags:       	JavaScript CSS
+tags:       	code
 post-card-type: image
 ---
 
