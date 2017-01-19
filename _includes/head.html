@@ -19,9 +19,8 @@
     <meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
 
     <!--   Core CSS Files   -->
+    <link href="//cdn.bootcss.com/flex-layout-attribute/1.0.3/css/flex-layout-attribute.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ "/assets/css/global.css" | prepend: site.baseurl }}">
-    <link rel="stylesheet" type="text/css" href="{{ "/assets/css/homepage.css" | prepend: site.baseurl }}">
-    <link rel="stylesheet" type="text/css" href="{{ "/assets/css/flex-layout-attribute.css" | prepend: site.baseurl }}">
 
     <!-- Canonical SEO -->
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">

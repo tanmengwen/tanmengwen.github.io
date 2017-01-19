@@ -21,9 +21,8 @@
     <meta property="og:description" content="Let&#39;s Encrypt 是很火的一个免费 SSL 证书发行项目，自动化发行证书，证书有 90 天的有效期。适合个人使用或者临时使用，不用再忍受自签发证书不受浏览器信赖的提示。">
 
     <!--   Core CSS Files   -->
+    <link href="//cdn.bootcss.com/flex-layout-attribute/1.0.3/css/flex-layout-attribute.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/assets/css/global.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/homepage.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/flex-layout-attribute.css">
 
     <!-- Canonical SEO -->
     <link rel="canonical" href="http://www.wnglmng.com/2016/12/nginx-config-https/">
@@ -242,11 +241,41 @@ $ ./certbot-auto -n
 
 </body>
 <!--   Core JS Files   -->
-<script type="text/javascript" src="/assets/js/jquery-2.1.0.min.js"></script>
-<script type="text/javascript" src="/assets/js/global.js"></script>
-<script type="text/javascript" src="/assets/js/homepage.js"></script>
-<script type="text/javascript" src="/assets/js/jquery.mixitup.min.js"></script>
-<script type="text/javascript" src="/assets/js/list.js"></script>
-<script type="text/javascript" src="/assets/js/smooth-scroll.js"></script>
+<script src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/mixitup/2.1.11/jquery.mixitup.min.js"></script>
+<script type="text/javascript">
+    if (!("ontouchstart" in document.documentElement)) {
+        document.documentElement.className += "no-touch";
+    }
 
+    $('a').on("touchstart", function (e) {
+        var link = $(this);
+        if (link.hasClass('hover')) {
+            return true;
+        } else {
+            link.addClass('hover');
+            $('a').not(this).removeClass('hover');
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    $(document).ready(function($) {
+        $('.container--grid ul').mixItUp({
+            animation: {
+            duration: 350,
+            effects: 'fade translateY(40px)',
+            easing: 'ease'
+            }
+        });
+        var filter_tab = $('.filter .placeholder a');
+        $('.filter ').on('click', function(event){
+            var selected_filter = $(event.target).data('type');
+            if( filter_tab.data('type') !== selected_filter ) {
+                $('.filter .selected').removeClass('selected');
+                $(event.target).addClass('selected');
+            }
+        });
+    });
+</script>
 </html>
