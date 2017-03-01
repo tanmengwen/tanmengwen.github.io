@@ -96,9 +96,8 @@ var lazyLoad = {
                 }
             } else {
                 clearInterval(t);
-
             }
-        }, 50);
+        }, 10);
     }
 };
 
