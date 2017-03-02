@@ -179,7 +179,7 @@ $hook[&#39;post_controller&#39;][] = array(
                         </div>
                     </div>
                     <div class="card-hero">
-                        <div class="card-image card-image--size-185" style="background-image: url(https://ww3.sinaimg.cn/large/906cb9dbgw1fb2xyzt1mij20wk0duwmv.jpg);"></div>
+                        <div class="card-image card-image--size-185" data-url="https://ww3.sinaimg.cn/large/906cb9dbgw1fb2xyzt1mij20wk0duwmv.jpg"></div>
                     </div>
                     <div class="card-footer">
                         <div class="card-footer-wrapper" layout="row bottom-left">
@@ -253,40 +253,5 @@ $hook[&#39;post_controller&#39;][] = array(
 <!--   Core JS Files   -->
 <script src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/mixitup/2.1.11/jquery.mixitup.min.js"></script>
-<script type="text/javascript">
-    if (!("ontouchstart" in document.documentElement)) {
-        document.documentElement.className += "no-touch";
-    }
-
-    $('a').on("touchstart", function (e) {
-        var link = $(this);
-        if (link.hasClass('hover')) {
-            return true;
-        } else {
-            link.addClass('hover');
-            $('a').not(this).removeClass('hover');
-            e.preventDefault();
-            return false;
-        }
-    });
-
-    $(document).ready(function($) {
-        $('.container--grid ul').mixItUp({
-            animation: {
-            duration: 350,
-            effects: 'fade translateY(40px)',
-            easing: 'ease'
-            }
-        });
-        var filter_tab = $('.filter .placeholder a');
-        $('.filter ').on('click', function(event){
-            var selected_filter = $(event.target).data('type');
-            if( filter_tab.data('type') !== selected_filter ) {
-                $('.filter .selected').removeClass('selected');
-                $(event.target).addClass('selected');
-            }
-        });
-    });
-</script>
-
+<script src="/assets/js/global.js"></script>
 </html>

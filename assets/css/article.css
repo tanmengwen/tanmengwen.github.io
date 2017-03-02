@@ -160,7 +160,7 @@ pre {
   font-size: .9em;
   font-weight: normal;
   line-height: 1.3em;
-  overflow: scroll; }
+  overflow: auto; }
   pre code {
     padding: 0;
     background: none;
@@ -306,8 +306,8 @@ hr {
         margin-top:60px;
     }
     blockquote {
-        font-size: 20px;
-        line-height: 28px;
+        /*font-size: 20px;
+        line-height: 28px;*/
     }
     .photo-grid-content img {
         width: 100%;
