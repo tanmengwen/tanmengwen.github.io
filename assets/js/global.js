@@ -65,7 +65,6 @@ var lazyLoad = {
                 if (classNames.indexOf("loaded") < 0) {
                     //针对使用data-自定义的属性，要使用getAttribute()获取值
                     var dataUrl = elems[i].getAttribute("data-url"); //实际的url替换原来的url
-                    console.log(dataUrl);
                     elems[i].style.backgroundImage = "url(" + dataUrl + ")"; //加载图片
                     elems[i].className = classNames + " loaded"; //被加载出来的图片，添加class属性，用于判断下次是否要加载
                     if (isFadein) {
