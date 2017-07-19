@@ -4,7 +4,7 @@ title:          SpringBoot 的 application.properties 配置文件
 subtitle:       
 card-image:    
 date:           2017-03-12 19:00:00
-tags:           collection
+tags:           code
 post-card-type: article
 website-url:    
 author:         
