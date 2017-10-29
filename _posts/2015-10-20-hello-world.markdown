@@ -8,4 +8,4 @@ tags:           life
 post-card-type: image
 ---
 
-我爱这个世界，还有你。
+我爱这个世界。
