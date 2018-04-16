@@ -1,9 +1,10 @@
 # Basic
-title: WngLMng's Blog
-author: WngLMng
-description: 嗨，我是王立明，一名来自黑龙江省鹤岗市的男生。<br/>现于无线生活（北京），从事互联网开发工作。
+title: Tan's Blog
+author: Tanmengwen
+description: An engineer
 
-url: "https://wnglmng.com"
+baseurl:           ""
+url:               "http://tanmengwen.github.io"
 
 permalink: /:year/:month/:title/
 
@@ -20,7 +21,7 @@ paginate_path: "pages/:num/"
 
 # Social
 social:
-    weibo: sunmoon1993
-    github: wnglmng
-    gplus: 112547382138552250597
-    mail: wnglmng@gmail.com
+    # weibo: Tanmengwen
+    github: Tanmengwen
+    # gplus: 112547382138552250597
+    mail: mengwent@gmail.com

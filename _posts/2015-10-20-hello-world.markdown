@@ -1,7 +1,7 @@
 ---
 layout:         post
 title:          Hello World
-subtitle:       遇见可遇不可求的美好
+subtitle:       haha
 card-image:     https://ww1.sinaimg.cn/mw690/906cb9dbgw1fayoxw9jh0j20b407e3zn.jpg
 date:           2015-10-20 19:00:00
 tags:           life
